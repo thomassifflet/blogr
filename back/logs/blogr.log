@@ -89,3 +89,5 @@
 [2017-12-19 15:56:36] blogr_logger.INFO: url: localhost:8000/v1/artical/ method: get [] []
 [2017-12-19 15:19:35] blogr_logger.INFO: url: localhost:8000/user/ method: get [] []
 [2017-12-19 15:19:52] blogr_logger.INFO: url: localhost:8000/blog/1 method: get [] []
+[2017-12-19 15:24:54] blogr_logger.INFO: url: localhost:8000/user/ method: get [] []
+[2017-12-19 15:24:57] blogr_logger.INFO: url: localhost:8000/blog/1 method: get [] []
