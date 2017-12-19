@@ -85,6 +85,7 @@ $app->group('/user', function() use ($app) {
 		$temp = $this->db->exec($sql);
 		// $temp2 = $temp->fetchAll(PDO::FETCH_ASSOC);
 		// var_dump($temp);
+
 	});
 	$app->put('/{id}' , function($request, $response, $args) {
 		$this->logger->addInfo("url: localhost:8000/user/" . $args["id"]. " method: put");
@@ -120,7 +121,8 @@ $app->group('/blog', function() use ($app) {
 		$this->logger->addInfo("url: localhost:8000/blog/" . $args["id"] ." method: get");	
 		$temp = $this->db->query('select * from Blog where id="'.$args["id"].'"');
 		$temp2 = $temp->fetchAll(PDO::FETCH_ASSOC);
-		var_dump($temp2);
+		return $response->withjson($temp2);
+		// var_dump($temp2);
 	});
 	$app->post('/' , function($request, $response, $args) {
 		// $keys = [];
@@ -174,13 +176,13 @@ $app->group('/artical', function() use ($app) {
 		$this->logger->addInfo("url: localhost:8000/artical/ method: get");	
 		$temp = $this->db->query('select * from User');
 		$temp2 = $temp->fetchAll(PDO::FETCH_ASSOC);
-		var_dump($temp2);
+		return $response->withjson($temp2);
 	});
 	$app->get('/{id}' , function($request, $response, $args) {
 		$this->logger->addInfo("url: localhost:8000/artical/" . $args["id"] ." method: get");	
 		$temp = $this->db->query('select * from Artical where id="'.$args["id"].'"');
 		$temp2 = $temp->fetchAll(PDO::FETCH_ASSOC);
-		var_dump($temp2);
+		return $response->withjson($temp2);
 	});
 	$app->post('/' , function($request, $response, $args) {
 		// $keys = [];
@@ -233,13 +235,13 @@ $app->group('/comment', function() use ($app) {
 		$this->logger->addInfo("url: localhost:8000/comment/ method: get");	
 		$temp = $this->db->query('select * from Comment');
 		$temp2 = $temp->fetchAll(PDO::FETCH_ASSOC);
-		var_dump($temp2);
+		return $response->withjson($temp2);
 	});
 	$app->get('/{id}' , function($request, $response, $args) {
 		$this->logger->addInfo("url: localhost:8000/comment/" . $args["id"] ." method: get");	
 		$temp = $this->db->query('select * from Comment where id="'.$args["id"].'"');
 		$temp2 = $temp->fetchAll(PDO::FETCH_ASSOC);
-		var_dump($temp2);
+		return $response->withjson($temp2);
 	});
 	$app->post('/' , function($request, $response, $args) {
 		// $keys = [];
@@ -292,13 +294,13 @@ $app->group('/category', function() use ($app) {
 		$this->logger->addInfo("url: localhost:8000/category/ method: get");	
 		$temp = $this->db->query('select * from Category');
 		$temp2 = $temp->fetchAll(PDO::FETCH_ASSOC);
-		var_dump($temp2);
+		return $response->withjson($temp2);
 	});
 	$app->get('/{id}' , function($request, $response, $args) {
 		$this->logger->addInfo("url: localhost:8000/category/" . $args["id"] ." method: get");	
 		$temp = $this->db->query('select * from Cateogry where id="'.$args["id"].'"');
 		$temp2 = $temp->fetchAll(PDO::FETCH_ASSOC);
-		var_dump($temp2);
+		return $response->withjson($temp2);
 	});
 	$app->post('/' , function($request, $response, $args) {
 		// $keys = [];
@@ -359,10 +361,14 @@ $app->group('/v1', function() use ($app) {
 		return $responseBody;
 	});
 	$app->get('/artical/{id}' , function($request, $response, $args) {
+		$output;
 		$this->logger->addInfo("url: localhost:8000/v1/artical/" . $args["id"] ." method: get");	
-		$temp = $this->db->query('select * from Cateogry where id="'.$args["id"].'"');
-		$temp2 = $temp->fetchAll(PDO::FETCH_ASSOC);
-		var_dump($temp2);
+		$query = $this->db->query('select * from Artical where id="'.$args["id"].'"');
+		$output["blog"]= $query->fetchAll(PDO::FETCH_ASSOC);
+		$query = $this->db->query('select * from Comment where artical_id = "'.$args["id"].'"');
+		$output["articals"] = $query->fetchAll(PDO::FETCH_ASSOC);
+		$responseBody = $response->withJson($output);
+		return $responseBody;
 	});
 });
 $app->run();
