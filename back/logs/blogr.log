@@ -87,7 +87,6 @@
 [2017-12-19 15:52:25] blogr_logger.INFO: url: localhost:8000/v1/artical/ method: get [] []
 [2017-12-19 15:56:00] blogr_logger.INFO: url: localhost:8000/v1/artical/ method: get [] []
 [2017-12-19 15:56:36] blogr_logger.INFO: url: localhost:8000/v1/artical/ method: get [] []
-[2017-12-19 15:19:35] blogr_logger.INFO: url: localhost:8000/user/ method: get [] []
-[2017-12-19 15:19:52] blogr_logger.INFO: url: localhost:8000/blog/1 method: get [] []
-[2017-12-19 15:24:54] blogr_logger.INFO: url: localhost:8000/user/ method: get [] []
-[2017-12-19 15:24:57] blogr_logger.INFO: url: localhost:8000/blog/1 method: get [] []
+[2017-12-19 16:02:55] blogr_logger.INFO: url: localhost:8000/v1/artical/1 method: get [] []
+[2017-12-19 16:22:00] blogr_logger.INFO: url: localhost:8000/blog/1 method: get [] []
+>>>>>>> 524c07ff8eae3972f16de76357191fcce2f427bb
